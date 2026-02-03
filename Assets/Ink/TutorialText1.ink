@@ -1,1 +1,2 @@
-﻿Siemaneczko Ziomeczki
+﻿WASD - Poruszanie Się
+Spacja - Skok

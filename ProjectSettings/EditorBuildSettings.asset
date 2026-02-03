@@ -12,26 +12,26 @@ EditorBuildSettings:
     path: Assets/Scenes/LevelSelect.unity
     guid: 1ad3a9ec15a3e5a41bb5a1489723d61d
   - enabled: 1
-    path: Assets/Scenes/TestLevel.unity
-    guid: e9893ba34f7d2b645a6ed4536d8ecdf8
-  - enabled: 1
     path: Assets/Scenes/Level1.unity
     guid: 8c9cfa26abfee488c85f1582747f6a02
   - enabled: 1
+    path: Assets/Scenes/LevelTest.unity
+    guid: 534082d9526631f429079dd49c9fb5e5
+  - enabled: 1
     path: Assets/Scenes/Level2.unity
-    guid: 9dca73c1600007a41b01421ed8473e18
+    guid: 9e9073fa57525884badf4b82a180079f
   - enabled: 1
     path: Assets/Scenes/Level3.unity
-    guid: 159d981d5be61a343957816daddf9c01
+    guid: a751dfd2e309f2540ba62febbf7beb74
   - enabled: 1
     path: Assets/Scenes/Level4.unity
-    guid: a509d30df0ef26c45af7bfd21b42656b
+    guid: 662cf4a2a89af2749ad1e5cd0a0b99aa
   - enabled: 1
     path: Assets/Scenes/Level5.unity
-    guid: 5bb14b403b3da4148a8c44bbae627955
+    guid: 49d5cc7fa64b8a348a11c7ec3ba677e1
   - enabled: 1
     path: Assets/Scenes/Level6.unity
-    guid: 2efe12d8dbbf5c14290f6c7fbdf1eb48
+    guid: 2d9733f604d73d64bae174f976d8f050
   m_configObjects:
     com.unity.input.settings: {fileID: 11400000, guid: e34e64247e742ad4ea95cc0261d72376, type: 2}
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}

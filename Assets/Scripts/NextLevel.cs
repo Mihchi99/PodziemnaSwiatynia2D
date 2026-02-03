@@ -3,12 +3,17 @@ using UnityEngine.SceneManagement;
 
 public class NextLevel : MonoBehaviour
 {
-    public string nextLevelName;
-
     public void LoadNextLevel()
     {
+        PauseMenu.canPause = true;
+        PlayerMovement.isFrozen = false;
         CheckPoint.savedPosition = Vector2.zero;
-        SceneManager.LoadScene(nextLevelName);
-        Time.timeScale = 1;
+        
+        string currentSceneName = SceneManager.GetActiveScene().name;
+        int currentLevel = int.Parse(currentSceneName.Replace("Level", ""));
+        int nextLevel = currentLevel + 1;
+        
+        SceneManager.LoadScene("Level" + nextLevel);
+        Time.timeScale = 1f;
     }
 }

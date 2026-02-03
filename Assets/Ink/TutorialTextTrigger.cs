@@ -11,12 +11,12 @@ public class TutorialTextTrigger : MonoBehaviour
 
     void Start()
     {
-        if (dialoguePanel != null)
+        if(dialoguePanel != null)
         {
             dialoguePanel.SetActive(false);
         }
 
-        if (inkJSON != null)
+        if(inkJSON != null)
         {
             currentStory = new Story(inkJSON.text);
         }
@@ -24,7 +24,7 @@ public class TutorialTextTrigger : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.CompareTag("Player"))
+        if(collision.CompareTag("Player"))
         {
             ShowDialogue();
         }
@@ -32,7 +32,7 @@ public class TutorialTextTrigger : MonoBehaviour
 
     private void OnTriggerExit2D(Collider2D collision)
     {
-        if (collision.CompareTag("Player"))
+        if(collision.CompareTag("Player"))
         {
             HideDialogue();
         }
@@ -40,7 +40,7 @@ public class TutorialTextTrigger : MonoBehaviour
 
     private void ShowDialogue()
     {
-        if (currentStory == null || dialoguePanel == null || dialogueText == null)
+        if(currentStory == null || dialoguePanel == null || dialogueText == null)
         {
             return;
         }
@@ -48,15 +48,17 @@ public class TutorialTextTrigger : MonoBehaviour
         currentStory.ResetState();
         dialoguePanel.SetActive(true);
 
-        if (currentStory.canContinue)
+        string fullText = "";
+        while(currentStory.canContinue)
         {
-            dialogueText.text = currentStory.Continue().Trim();
+            fullText += currentStory.Continue();
         }
+        dialogueText.text = fullText.Trim();
     }
 
     private void HideDialogue()
     {
-        if (dialoguePanel != null)
+        if(dialoguePanel != null)
         {
             dialoguePanel.SetActive(false);
         }

@@ -13,10 +13,17 @@ public class CheckPoint : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if(collision.gameObject.CompareTag("Player"))
+        if(collision.CompareTag("Player"))
         {
             audioSource.PlayOneShot(checkPointClip, 0.5f);
             savedPosition = collision.transform.position;
+            
+            PlayerMovement player = collision.GetComponent<PlayerMovement>();
+            if(player != null)
+            {
+                player.health = 3;
+                player.UpdateHealthDisplay();
+            }
         }
     }
 }

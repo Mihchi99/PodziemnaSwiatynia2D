@@ -18,7 +18,7 @@ public class LevelSelect : MonoBehaviour
         for(int i = 0; i < levelButtons.Length; i++)
         {
             int levelIndex = i + 1;
-
+            
             if(levelIndex <= LevelProgress.unlockedLevel)
             {
                 levelButtons[i].interactable = true;
@@ -38,6 +38,7 @@ public class LevelSelect : MonoBehaviour
 
     public void LoadLevel(int levelNumber)
     {
+        PauseMenu.canPause = true;
         CheckPoint.savedPosition = Vector2.zero;
         SceneManager.LoadScene("Level" + levelNumber);
     }
@@ -50,6 +51,7 @@ public class LevelSelect : MonoBehaviour
 
     public void BackToMainMenu()
     {
+        PauseMenu.canPause = true;
         SceneManager.LoadScene("MainMenu");
     }
 }

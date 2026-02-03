@@ -1,0 +1,2 @@
+﻿Uwaga
+Spadająca Platforma

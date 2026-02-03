@@ -1,0 +1,1 @@
+﻿Fioletowe Kolczatki Zadają 1 Punkt Obrażeń

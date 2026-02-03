@@ -8,8 +8,8 @@ public class PlayerMovement : MonoBehaviour
     public Rigidbody2D rb;
     public float moveSpeed = 4f;
     public float jumpForce = 10f;
-    private int jumpsRemaining = 2;
     public int maxJumps = 2;
+    private int jumpsRemaining = 2;
     private float horizontalMovement;
     public Animator animator;
     public SpriteRenderer spriteRenderer;
@@ -23,13 +23,14 @@ public class PlayerMovement : MonoBehaviour
     public AudioClip landClip;
     private bool isRunning = false;
     private bool isGrounded = false;
+    public static bool isFrozen = false;
 
     void Start()
     {
         spriteRenderer = GetComponent<SpriteRenderer>();
         audioSource = GetComponent<AudioSource>();
         UpdateHealthDisplay();
-        
+
         if(CheckPoint.savedPosition != Vector2.zero)
         {
             transform.position = CheckPoint.savedPosition;
@@ -38,6 +39,11 @@ public class PlayerMovement : MonoBehaviour
 
     void Update()
     {
+        if(isFrozen)
+        {
+            return;
+        }
+
         Vector2 newVelocity = new Vector2(horizontalMovement * moveSpeed, rb.linearVelocity.y);
         rb.linearVelocity = newVelocity;
         animator.SetFloat("yVelocity", rb.linearVelocity.y);
@@ -57,14 +63,14 @@ public class PlayerMovement : MonoBehaviour
         {
             spriteRenderer.flipX = true;
         }
-        
-        if(transform.position.y < -10)
+
+        if(transform.position.y < -20)
         {
             Death();
         }
     }
 
-    void UpdateHealthDisplay()
+    public void UpdateHealthDisplay()
     {
         for(int i = 0; i < lifeIcons.Length; i++)
         {
@@ -79,8 +85,23 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
+    public void ResetMovement()
+    {
+        horizontalMovement = 0f;
+        if(isRunning)
+        {
+            audioSource.Stop();
+            isRunning = false;
+        }
+    }
+
     public void Move(InputAction.CallbackContext context)
     {
+        if(isFrozen)
+        {
+            return;
+        }
+
         horizontalMovement = context.ReadValue<Vector2>().x;
 
         if(horizontalMovement != 0 && !isRunning && isGrounded)
@@ -100,6 +121,11 @@ public class PlayerMovement : MonoBehaviour
 
     public void Jump(InputAction.CallbackContext context)
     {
+        if(isFrozen)
+        {
+            return;
+        }
+
         if(context.performed && jumpsRemaining > 0)
         {
             audioSource.PlayOneShot(jumpClip, 0.5f);
